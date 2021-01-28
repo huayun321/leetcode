@@ -1,25 +1,24 @@
 package two_sum
 
 func twoSum(nums []int, target int) []int {
-	m := make(map[int]int, len(nums))
+	m := make(map[int][]int, len(nums))
 	for i, v := range nums {
-		m[v] = i
+		if len(m[v]) == 0 {
+			m[v] = []int{}
+		}
+		m[v] = append(m[v], i)
 	}
 
 	for first, v := range nums {
-		if v >= target {
-			continue
-		}
 		k := target - v
-		second, ok := m[k]
-		if !ok {
-			continue
-		}
+		second, _ := m[k]
 
-		if first == second {
-			continue
+		for _, v := range second {
+			if first == v {
+				continue
+			}
+			return []int{first, v}
 		}
-		return []int{first, second}
 	}
 
 	return []int{}
