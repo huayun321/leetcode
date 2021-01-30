@@ -1,4 +1,4 @@
-package two_sum
+package p1_two_sum
 
 func twoSum(nums []int, target int) []int {
 	m := make(map[int][]int, len(nums))
